@@ -36,7 +36,6 @@ list-style: none
 
 .signup-button {
 color: brown;
-/* margin-left: 50px; */
 }
 
 .home-container {
@@ -50,4 +49,10 @@ color: brown;
 
  .login-button-container {
    background-color: burlywood;
+   margin-right: 2%;
  }
+
+ .signup-button-container {
+  color: brown;
+  margin-right: 5%;
+  }
