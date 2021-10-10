@@ -18,7 +18,9 @@ function Navigation({ isLoaded }){
       <>
         <LoginFormModal />
         <div className="signup-button-container">
-          <NavLink className="signup-button" to="/signup">Sign Up</NavLink>
+          <NavLink to="/signup">
+          <button className="signup-button">Sign Up</button>
+          </NavLink>
         </div>
       </>
     );
