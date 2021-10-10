@@ -3,16 +3,16 @@
   justify-content: space-between;
   flex-direction: flex-end;
   width: 100%;
-  height: 10%;
-  background-color: aqua;
-
+  background-color: black;
 }
 
 .nav-container {
-display: flex;
-justify-content: flex-end;
-width:100%;
-list-style: none
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  height: 60px;
+  list-style: none;
+  background-color: rgba(255, 255, 255, 0.16);
 }
 
 .nav-button-container {
@@ -21,7 +21,7 @@ list-style: none
   display: flex;
   justify-content: space-around;
   padding-right: 40px;
-  width:50%;
+  width: 50%;
   background-color: white;
 }
 
@@ -30,29 +30,57 @@ list-style: none
   flex-direction: row;
   justify-content: flex-end;
   width: 50%;
-  background-color: pink;
 }
 
-
 .signup-button {
-color: brown;
+  color: brown;
+}
+
+.home-button {
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 
 .home-container {
+  display: flex;
+  align-items: center;
   width: 50%;
+  height: 100%;
 }
 
 .login-button {
-  color: pink;
-  background-color: blueviolet;
- }
+  height: 50%;
+  color: white;
+  background-color: rgba(250, 250, 250, 0);
+  border: solid black;
+  border-radius: 4px;
+}
 
- .login-button-container {
-   background-color: burlywood;
-   margin-right: 2%;
- }
+.login-button:hover {
+  background-color:black; /* Green */
+  color: white;
+}
 
- .signup-button-container {
-  color: brown;
+.login-button-container {
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0);
+  margin-right: 2%;
+}
+
+.signup-button-container {
+  display: flex;
+  align-items: center;
   margin-right: 5%;
-  }
+}
+
+.logo {
+  /* justify-content: flex-start; */
+  margin-top: 10px;
+  margin-left: 20%;
+   height: 130px;
+   width: 205px;
+  /* width: 15%; */
+
+}

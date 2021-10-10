@@ -28,7 +28,9 @@ function Navigation({ isLoaded }){
     <div className="nav-bar">
       <div className="nav-container">
         <div className="home-container">
-          <NavLink className="home-button" exact to="/">Home</NavLink>
+          <NavLink className="home-button" exact to="/">
+            <img className="logo" src="https://res.cloudinary.com/dqwy6sxtc/image/upload/v1633838930/poolupp/transparent-logo_puvlsm.png" alt="" />
+          </NavLink>
         </div>
             <div className="nav-button">
                 {isLoaded && sessionLinks}
