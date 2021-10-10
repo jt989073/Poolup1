@@ -9,16 +9,14 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       ownerId: {
-        allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {model: 'Users'}
       },
       poolHallId: {
-        allowNull: false,
         type: Sequelize.INTEGER,
         references: {model: 'PoolHalls'}
       },
       groupId: {
-        allowNull: false,
         type: Sequelize.INTEGER,
         references: {model: 'Groups'}
       },
@@ -28,17 +26,18 @@ module.exports = {
       },
       date: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.STRING
+      },
+      Attending: {
+        type: Sequelize.BOOLEAN
       },
       playerAmount: {
         type: Sequelize.INTEGER
       },
       createdAt: {
-        allowNull: false,
         type: Sequelize.DATE
       },
       updatedAt: {
-        allowNull: false,
         type: Sequelize.DATE
       }
     });

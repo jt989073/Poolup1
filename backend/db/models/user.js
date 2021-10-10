@@ -59,7 +59,7 @@ module.exports = (sequelize, DataTypes) => {
       otherKey: "groupId",
       foreignKey: "userId"
     }
-
+    User.hasMany(models.Event, {foreignKey: "ownerId"})
     User.belongsToMany(models.Event, eventColumnMapping)
     User.belongsToMany(models.Group, groupColumnMapping)
   };

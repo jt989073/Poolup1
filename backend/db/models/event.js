@@ -6,12 +6,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER
     },
     poolHallId: {
-      allowNull: false,
       type: DataTypes.INTEGER,
       references: {model: 'PoolHalls'}
     },
     groupId: {
-      allowNull: false,
       type: DataTypes.INTEGER,
       references: {model: 'Groups'}
     },
@@ -20,8 +18,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING
     },
     date: {
-      allowNull: false,
-      type: DataTypes.DATE
+      type: DataTypes.STRING
+    },
+    Attending: {
+      type: DataTypes.BOOLEAN
     },
     playerAmount: {
       type: DataTypes.INTEGER
@@ -34,6 +34,7 @@ module.exports = (sequelize, DataTypes) => {
       otherKey: "userId",
       foreignKey: "eventId"
     }
+    Event.belongsTo(models.User, {foreignKey: "ownerId"})
     Event.belongsToMany(models.User, columnMapping)
     Event.belongsTo(models.Group, {foreignKey: "groupId"})
     Event.belongsTo(models.PoolHall, {foreignKey: "poolHallId"})

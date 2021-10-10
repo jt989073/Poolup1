@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
   const PoolHall = sequelize.define('PoolHall', {
     name: {
       allowNull: false,
-      type: DataTypes.STRING(20)
+      type: DataTypes.STRING
     },
     address: {
       allowNull: false,
