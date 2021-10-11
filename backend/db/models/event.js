@@ -18,7 +18,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING
     },
     date: {
-      type: DataTypes.STRING
+      allowNull: false,
+      type: DataTypes.DATE
     },
     Attending: {
       type: DataTypes.BOOLEAN

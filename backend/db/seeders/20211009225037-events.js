@@ -12,10 +12,10 @@ let newEvents = [
     poolHallId: 36,
     groupId: 14,
     name: "Slims Shootout",
-    date: "10/23/2021",
+    date: "2021/11/23",
     Attending: false,
     playerAmount: 32,
-    createdAt: new Date(),
+    createdAt: faker.date.past(1),
     updatedAt: new Date()
   },
   {
@@ -23,10 +23,10 @@ let newEvents = [
     poolHallId: 38,
     groupId: 17,
     name: "City Wide Tournament",
-    date: "11/06/2021",
+    date: "2021/11/30",
     Attending: false,
     playerAmount: 64,
-    createdAt: new Date(),
+    createdAt: faker.date.past(1),
     updatedAt: new Date()
   },
   {
@@ -34,10 +34,10 @@ let newEvents = [
     poolHallId: 16,
     groupId: 26,
     name: "BCA League Meet and Greet",
-    date: "11/20/2021",
+    date: "2021/12/23",
     Attending: false,
     playerAmount: 128,
-    createdAt: new Date(),
+    createdAt: faker.date.past(1),
     updatedAt: new Date()
   },
   {
@@ -45,10 +45,10 @@ let newEvents = [
     poolHallId: 7,
     groupId: 21,
     name: "Junior BCA State Tournament",
-    date: "11/06/2021",
+    date: "2021/12/07",
     Attending: false,
     playerAmount: 128,
-    createdAt: new Date(),
+    createdAt: faker.date.past(1),
     updatedAt: new Date()
   },
   {
@@ -56,10 +56,10 @@ let newEvents = [
     poolHallId: 46,
     groupId: 20,
     name: "Small Tournament",
-    date: "10/23/2021",
+    date: "2021/10/23",
     Attending: false,
     playerAmount: 14,
-    createdAt: new Date(),
+    createdAt: faker.date.past(1),
     updatedAt: new Date()
   },
 ]
