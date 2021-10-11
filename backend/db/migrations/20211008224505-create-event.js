@@ -26,7 +26,7 @@ module.exports = {
       },
       date: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.DATE
       },
       Attending: {
         type: Sequelize.BOOLEAN
