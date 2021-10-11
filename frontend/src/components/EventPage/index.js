@@ -7,7 +7,7 @@ const EventPage = () => {
   const dispatch = useDispatch()
 
   const events = useSelector(state => {
-    return state.event.list.map(eventId=> eventId.name)
+    return state.event.list
   })
 
 
@@ -23,7 +23,7 @@ if(!events){
     <main>
       <CreateEventModal />
       <ul>
-      {events.map(event => <li>{`${event}`}</li>)}
+      {events.map(event => <li key={event.id}>{`${event.name} ${event.date}`}</li>)}
       </ul>
     </main>
   )
