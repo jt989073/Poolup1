@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getEvents } from "../../store/event";
+import CreateEventModal from "../CreateEventModal";
 
 const EventPage = () => {
   const dispatch = useDispatch()
 
   const events = useSelector(state => {
-    console.log("events>>>", state.event.list)
     return state.event.list.map(eventId=> eventId.name)
   })
 
@@ -21,6 +21,7 @@ if(!events){
 
   return (
     <main>
+      <CreateEventModal />
       <ul>
       {events.map(event => <li>{`${event}`}</li>)}
       </ul>
