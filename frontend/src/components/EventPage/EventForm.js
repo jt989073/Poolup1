@@ -1,32 +1,20 @@
-// import { useEffect, useState } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-
-// //TODO: add ownerId to form? should be added automatically based on foreign key
-// const CreatePokemonForm = () => {
-//   // const [poolHallId, setPoolHallId] = useState()
-//   // const [name, setName] = useState("")
-//   // const [date, setDate] = useState("YYYY/MM/DD")
-//   // const [playerAmount] = useState(0)
-
-
-//   return (
-
-//   )
-// }
-
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getPoolHalls } from "../../store/event";
 import "./EventPage.css";
 
 
 function CreateEventForm() {
+  const dispatch = useDispatch()
   const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-//   const [type, setType] = useState("");
-//   const [image, setImage] = useState("");
-//   const [time, setTime] = useState("");
-//   const [date, setDate] = useState("YYYY/MM/DD");
-//   const [eventAttendees, setEventAttendees] = useState(0);
+  const [date, setDate] = useState("");
+  const [playerAmount, setPlayerAmount] = useState(0)
+  const poolHalls = useSelector(state => state.event.poolHalls)
+
+
+  useEffect(() => {
+    dispatch(getPoolHalls())
+  }, [dispatch])
 
   //TODO ownerid for create event
   //TODO location for create event
@@ -49,12 +37,26 @@ function CreateEventForm() {
               required
             />
           </div>
+          <select>
+          {poolHalls.map(poolHall =>
+            <option key={poolHall.id}>{poolHall.name}</option>
+          )}
+        </select>
           <div className="fieldDiv">
-            <label>Description</label>
+            <label>Date</label>
             <input
-              type="text"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              type="date"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+              required
+            />
+          </div>
+          <div className="fieldDiv">
+            <label>Player Amount</label>
+            <input
+              type="number"
+              value={playerAmount}
+              onChange={(e) => setPlayerAmount(e.target.value)}
               required
             />
           </div>
