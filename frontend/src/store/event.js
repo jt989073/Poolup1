@@ -1,3 +1,5 @@
+import { csrfFetch } from './csrf';
+
 const LOAD = 'event/LOAD';
 const ADD_ONE = 'event/ADD_ONE'
 const LOAD_POOLHALLS = 'event/LOAD_POOLHALLS'
@@ -28,7 +30,7 @@ export const getEvents = () => async (dispatch) => {
 };
 
 export const createEvent = (payload) => async (dispatch) => {
-  const res = await fetch('/api/events', {
+  const res = await csrfFetch('/api/events', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify(payload)

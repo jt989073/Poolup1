@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPoolHalls } from "../../store/event";
+import {useHistory} from 'react-router-dom'
+import { createEvent } from "../../store/event";
 import "./EventPage.css";
 
 
 function CreateEventForm() {
+  const history = useHistory()
   const dispatch = useDispatch()
+  const ownerId = useSelector(state => state.session.user?.id)
+  const poolHalls = useSelector(state => state.event.poolHalls)
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
+  const [poolHall, setPoolHall] = useState("")
   const [playerAmount, setPlayerAmount] = useState(0)
-  const poolHalls = useSelector(state => state.event.poolHalls)
 
 
   useEffect(() => {
@@ -19,7 +24,20 @@ function CreateEventForm() {
   //TODO ownerid for create event
   //TODO location for create event
 
-  const handleSubmit = () => {};
+  const handleSubmit = async(e) => {
+    e.preventDefault();
+    const payload = {
+      ownerId,
+      poolHall,
+      name,
+      date,
+      playerAmount,
+    }
+    let createdEvent = await dispatch(createEvent(payload))
+    if (createdEvent){
+      history.push(`/events/${createdEvent.id}`)
+    }
+  };
 
   return (
     <div className="createEventModal">
@@ -27,7 +45,7 @@ function CreateEventForm() {
         <p>Create Event</p>
       </div>
       <div>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="fieldDiv">
             <label>Event Name</label>
             <input
@@ -37,7 +55,7 @@ function CreateEventForm() {
               required
             />
           </div>
-          <select>
+          <select value={poolHall} onChange={(e) => setPoolHall(e.target.value)}>
           {poolHalls.map(poolHall =>
             <option key={poolHall.id}>{poolHall.name}</option>
           )}

@@ -35,6 +35,7 @@ router.post(
   "/",
   validateEvent,
   asyncHandler(async (req, res) => {
+    console.log(">>>>>>>>>", req.body)
     const id = await EventRepository.createEvent(req.body);
     return res.redirect(`${req.baseUrl}/${id}`);
   })
