@@ -5,7 +5,6 @@ const eventsRouter = require("./events.js")
 const poolHallsRouter = require('./poolHalls.js')
 
 router.use('/session', sessionRouter);
-
 router.use('/users', usersRouter);
 router.use("/events", eventsRouter);
 router.use('/poolHalls', poolHallsRouter)

@@ -1,13 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { getPoolHalls } from "../../store/event";
 import "./EventPage.css";
 
 
 function CreateEventForm() {
+  const dispatch = useDispatch()
   const [name, setName] = useState("");
-  const [date, setDate] = useState("YYYY/MM/DD");
+  const [date, setDate] = useState("");
   const [playerAmount, setPlayerAmount] = useState(0)
+  const poolHalls = useSelector(state => state.event.poolHalls)
 
+
+  useEffect(() => {
+    dispatch(getPoolHalls())
+  }, [dispatch])
 
   //TODO ownerid for create event
   //TODO location for create event
@@ -30,6 +37,11 @@ function CreateEventForm() {
               required
             />
           </div>
+          <select>
+          {poolHalls.map(poolHall =>
+            <option key={poolHall.id}>{poolHall.name}</option>
+          )}
+        </select>
           <div className="fieldDiv">
             <label>Date</label>
             <input

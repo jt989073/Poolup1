@@ -6,13 +6,14 @@ function getRandomNum(min, max) {
 }
 
 
+
 let newEvents = [
   {
     ownerId: 1,
     poolHallId: 36,
     groupId: 14,
     name: "Slims Shootout",
-    date: "2021/11/23",
+    date: faker.date.between("2021-10-23", "2021-11-23"),
     Attending: false,
     playerAmount: 32,
     createdAt: faker.date.past(1),
@@ -23,7 +24,7 @@ let newEvents = [
     poolHallId: 38,
     groupId: 17,
     name: "City Wide Tournament",
-    date: "2021/11/30",
+    date: faker.date.between("2021-10-23", "2021-11-23"),
     Attending: false,
     playerAmount: 64,
     createdAt: faker.date.past(1),
@@ -34,7 +35,7 @@ let newEvents = [
     poolHallId: 16,
     groupId: 26,
     name: "BCA League Meet and Greet",
-    date: "2021/12/23",
+    date: faker.date.between("2021-10-23", "2021-11-23"),
     Attending: false,
     playerAmount: 128,
     createdAt: faker.date.past(1),
@@ -45,7 +46,7 @@ let newEvents = [
     poolHallId: 7,
     groupId: 21,
     name: "Junior BCA State Tournament",
-    date: "2021/12/07",
+    date: faker.date.between("2021-10-23", "2021-11-23"),
     Attending: false,
     playerAmount: 128,
     createdAt: faker.date.past(1),
@@ -56,7 +57,7 @@ let newEvents = [
     poolHallId: 46,
     groupId: 20,
     name: "Small Tournament",
-    date: "2021/10/23",
+    date: faker.date.between("2021-10-23", "2021-11-23"),
     Attending: false,
     playerAmount: 14,
     createdAt: faker.date.past(1),
