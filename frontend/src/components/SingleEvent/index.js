@@ -20,6 +20,8 @@ const SingleEvent = () => {
 
 return (
   <div className="single-event-container">
+    <button className="edit-button">Edit Event</button>
+    <button className="delete-button">Delete Event</button>
     <div className="event-name">{event?.name}</div>
     <div className="event-date">{event?.date}</div>
     <div className="event-date-poolHall">{event?.poolHallId}</div>
