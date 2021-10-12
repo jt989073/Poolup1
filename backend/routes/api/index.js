@@ -8,5 +8,6 @@ router.use('/session', sessionRouter);
 router.use('/users', usersRouter);
 router.use("/events", eventsRouter);
 router.use('/poolHalls', poolHallsRouter)
+router.use('/events/:id', eventsRouter)
 
 module.exports = router;

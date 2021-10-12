@@ -7,7 +7,7 @@ const EventPage = () => {
   const dispatch = useDispatch()
 
   const events = useSelector(state => {
-    return state.event.list
+    return Object.values(state.event.list)
   })
 
 

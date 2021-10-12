@@ -17,9 +17,9 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.STRING
     },
-    // time:{
-    //   type: DataTypes.DATE
-    // },
+    image: {
+      type: DataTypes.STRING,
+    },
     date: {
       allowNull: false,
       type: DataTypes.DATE

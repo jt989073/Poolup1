@@ -11,7 +11,7 @@ const CreateEventModal = () => {
       <button className="create-event-button" onClick={() => setShowEventModal(true)}>Create Event</button>
       {showEventModal && (
         <Modal onClose={() => setShowEventModal(false)} >
-          <CreateEventForm />
+          <CreateEventForm setShowEventModal={setShowEventModal} />
         </Modal>
       )}
     </div>

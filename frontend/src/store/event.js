@@ -21,13 +21,24 @@ const loadPoolHalls = poolHall => ({
 
 
 export const getEvents = () => async (dispatch) => {
-  const res = await fetch("/api/events");
+  const res = await csrfFetch("/api/events");
   console.log(res)
   if (res.ok) {
     const listEvents = await res.json();
     dispatch(load(listEvents));
   }
 };
+
+export const getOneEvent = (id) => async dispatch => {
+  const res = await csrfFetch(`/api/events/${id}`)
+
+  if (res.ok) {
+    const event = await res.json()
+    dispatch(addEvent(event))
+    return event
+  }
+}
+
 
 export const createEvent = (payload) => async (dispatch) => {
   const res = await csrfFetch('/api/events', {
@@ -39,15 +50,17 @@ export const createEvent = (payload) => async (dispatch) => {
   if (res.ok){
     const newEvent = await res.json()
     dispatch(addEvent(newEvent))
+    return newEvent
   }
 }
 
 export const getPoolHalls = () => async dispatch => {
-  const res = await fetch(`/api/poolHalls`)
+  const res = await csrfFetch(`/api/poolHalls`)
 
   if(res.ok) {
     const poolHalls = await res.json();
     dispatch(loadPoolHalls(poolHalls))
+    return poolHalls
   }
 }
 
@@ -65,29 +78,16 @@ const eventReducer = (state = initialState, action) => {
       action.list.forEach((event) => {
         allEvents[event.id] = event;
       });
-      return {
-        ...allEvents,
-        ...state,
-        list: action.list
-      }
+      return {...state, list: allEvents}
     }
     case ADD_ONE: {
-      if (!state[action.event.id]){
-        const newState = {
+      const newList = {...state.list}
+        newList[action.event.id] = action.event
+      const newState = {
           ...state,
-          [action.event.id]: action.event,
+          list: newList,
         }
-        const eventList = newState.list.map(id => newState[id])
-        eventList.push(action.event)
         return newState;
-      }
-      return {
-        ...state,
-        [action.event.id]: {
-          ...state[action.event.id],
-          ...action.event
-        }
-      }
     }
     case LOAD_POOLHALLS: {
       return {

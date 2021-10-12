@@ -6,7 +6,7 @@ import { createEvent } from "../../store/event";
 import "./EventPage.css";
 
 
-function CreateEventForm() {
+function CreateEventForm({setShowEventModal}) {
   const history = useHistory()
   const dispatch = useDispatch()
   const ownerId = useSelector(state => state.session.user?.id)
@@ -14,7 +14,7 @@ function CreateEventForm() {
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
   const [poolHall, setPoolHall] = useState("")
-  const [playerAmount, setPlayerAmount] = useState(0)
+  const [playerAmount, setPlayerAmount] = useState(1)
 
 
   useEffect(() => {
@@ -28,7 +28,7 @@ function CreateEventForm() {
     e.preventDefault();
     const payload = {
       ownerId,
-      poolHall,
+      poolHallId: poolHall,
       name,
       date,
       playerAmount,
@@ -36,9 +36,11 @@ function CreateEventForm() {
     let createdEvent = await dispatch(createEvent(payload))
     if (createdEvent){
       history.push(`/events/${createdEvent.id}`)
+      setShowEventModal(false)
     }
   };
 
+    console.log(poolHall)
   return (
     <div className="createEventModal">
       <div className="modalHeader">
@@ -57,7 +59,7 @@ function CreateEventForm() {
           </div>
           <select value={poolHall} onChange={(e) => setPoolHall(e.target.value)}>
           {poolHalls.map(poolHall =>
-            <option key={poolHall.id}>{poolHall.name}</option>
+            <option value={poolHall.id} key={poolHall.id}>{poolHall.name}</option>
           )}
         </select>
           <div className="fieldDiv">
@@ -69,6 +71,15 @@ function CreateEventForm() {
               required
             />
           </div>
+          {/* <div className="fieldDiv">
+            <label>image</label>
+            <input
+              type="file"
+              // value={date}
+              // onChange={(e) => setDate(e.target.value)}
+              required
+            />
+          </div> */}
           <div className="fieldDiv">
             <label>Player Amount</label>
             <input
