@@ -49,10 +49,9 @@ function EditEventForm({setShowEditEventModal}) {
   };
 
 
-  // useEffect(() => {
-  //   // dispatch(getPoolHalls())
-  // }, [])
-    // console.log(poolHall)
+  useEffect(() => {
+    dispatch(getPoolHalls())
+  }, [dispatch])
 
   return(
     <div className="createEventModal">
