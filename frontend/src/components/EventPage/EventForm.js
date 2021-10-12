@@ -21,8 +21,7 @@ function CreateEventForm({setShowEventModal}) {
     dispatch(getPoolHalls())
   }, [dispatch])
 
-  //TODO ownerid for create event
-  //TODO location for create event
+//TODO: add useState for location
 
   const handleSubmit = async(e) => {
     e.preventDefault();

@@ -1,1 +1,22 @@
+.event-page {
+  height: 1000px;
+  width: 100%;
+  background-image: url("https://res.cloudinary.com/dqwy6sxtc/image/upload/v1634024575/poolupp/sven-mieke-jGpuUjgd-0U-unsplash_mppizm.jpg");
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+}
 
+.event-container {
+  display: flex;
+  justify-content: center;
+  align-content: space-between;
+  background-color: rgba(255, 255, 255, 0.246);
+  width: 800px;
+}
+
+.event {
+  margin-top: 15px;
+}

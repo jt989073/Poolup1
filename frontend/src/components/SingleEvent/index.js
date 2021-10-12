@@ -8,15 +8,23 @@ const SingleEvent = () => {
   const {eventId} = useParams()
   const dispatch = useDispatch()
 
-  const events = useSelector(state => {
-    return Object.values(state.event.list[eventId])
+  console.log('eventId>>>', eventId)
+
+  const event = useSelector(state => {
+    return state.event.list[eventId]
   })
 
-
-
+  useEffect(() => {
+    dispatch(getOneEvent(eventId))
+  }, [dispatch, eventId])
 
 return (
-  <h1>hello world</h1>
+  <div className="single-event-container">
+    <div className="event-name">{event?.name}</div>
+    <div className="event-date">{event?.date}</div>
+    <div className="event-date-poolHall">{event?.poolHallId}</div>
+    <div className="event-playerAmount">{event?.playeAmount}</div>
+  </div>
 )
 
 }
