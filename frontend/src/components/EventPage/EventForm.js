@@ -1,33 +1,52 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPoolHalls } from "../../store/event";
+import {useHistory} from 'react-router-dom'
+import { createEvent } from "../../store/event";
 import "./EventPage.css";
 
 
-function CreateEventForm() {
+function CreateEventForm({setShowEventModal}) {
+  const history = useHistory()
   const dispatch = useDispatch()
+  const ownerId = useSelector(state => state.session.user?.id)
+  const poolHalls = useSelector(state => state.event.poolHalls)
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
-  const [playerAmount, setPlayerAmount] = useState(0)
-  const poolHalls = useSelector(state => state.event.poolHalls)
+  const [poolHall, setPoolHall] = useState("")
+  const [playerAmount, setPlayerAmount] = useState(1)
 
 
   useEffect(() => {
     dispatch(getPoolHalls())
   }, [dispatch])
 
-  //TODO ownerid for create event
-  //TODO location for create event
+//TODO: add useState for location
 
-  const handleSubmit = () => {};
+  const handleSubmit = async(e) => {
+    e.preventDefault();
+    const payload = {
+      ownerId,
+      poolHallId: poolHall,
+      name,
+      date,
+      playerAmount,
+    }
+    let createdEvent = await dispatch(createEvent(payload))
+    if (createdEvent){
+      history.push(`/events/${createdEvent.id}`)
+      setShowEventModal(false)
+    }
+  };
 
+    console.log(poolHall)
   return (
     <div className="createEventModal">
       <div className="modalHeader">
         <p>Create Event</p>
       </div>
       <div>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="fieldDiv">
             <label>Event Name</label>
             <input
@@ -37,9 +56,9 @@ function CreateEventForm() {
               required
             />
           </div>
-          <select>
+          <select value={poolHall} onChange={(e) => setPoolHall(e.target.value)}>
           {poolHalls.map(poolHall =>
-            <option key={poolHall.id}>{poolHall.name}</option>
+            <option value={poolHall.id} key={poolHall.id}>{poolHall.name}</option>
           )}
         </select>
           <div className="fieldDiv">
@@ -51,6 +70,15 @@ function CreateEventForm() {
               required
             />
           </div>
+          {/* <div className="fieldDiv">
+            <label>image</label>
+            <input
+              type="file"
+              // value={date}
+              // onChange={(e) => setDate(e.target.value)}
+              required
+            />
+          </div> */}
           <div className="fieldDiv">
             <label>Player Amount</label>
             <input

@@ -7,7 +7,7 @@ const EventPage = () => {
   const dispatch = useDispatch()
 
   const events = useSelector(state => {
-    return state.event.list
+    return Object.values(state.event.list)
   })
 
 
@@ -20,11 +20,16 @@ if(!events){
 }
 
   return (
-    <main>
+    <main className="event-page">
       <CreateEventModal />
-      <ul>
-      {events.map(event => <li key={event.id}>{`${event.name} ${event.date}`}</li>)}
-      </ul>
+      <div>
+      {events.map(event =>
+      <div className="event-container" key={event.id}>
+        <div className="event">{`${event.name}`}</div>
+        <div className="event">{`${event.date}`}</div>
+      </div>)
+      }
+      </div>
     </main>
   )
 };

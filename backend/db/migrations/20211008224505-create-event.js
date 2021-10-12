@@ -24,12 +24,12 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
-      // time:{
-      //   type: Sequelize.DATE
-      // },
       date: {
         allowNull: false,
         type: Sequelize.DATE
+      },
+      image: {
+        type: Sequelize.STRING,
       },
       Attending: {
         type: Sequelize.BOOLEAN

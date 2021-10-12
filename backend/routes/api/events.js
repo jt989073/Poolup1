@@ -4,7 +4,7 @@ const EventRepository = require("../../db/events-repository");
 const { check } = require("express-validator");
 const router = express.Router();
 const { handleValidationErrors } = require("../../utils/validation");
-const Event = require('../../db/models')
+const Event = require("../../db/models");
 
 router.get(
   "/",
@@ -36,10 +36,17 @@ router.post(
   validateEvent,
   asyncHandler(async (req, res) => {
     const id = await EventRepository.createEvent(req.body);
-    return res.redirect(`${req.baseUrl}/${id}`);
+    return res.json(id);
   })
 );
 
+router.get(
+  "/:id",
+  asyncHandler(async (req, res) => {
+    const event = await EventRepository.getOneEvent(req.params.id);
+    return res.json(event);
+  })
+);
 
 //TODO: add image url
 module.exports = router;

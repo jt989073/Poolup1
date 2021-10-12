@@ -5,11 +5,16 @@ const listEvents = async () => {
 }
 
 const createEvent = async (details) => {
-  const addEvent = await Event.create(details)
-  return addEvent.id
+  return await Event.create(details)
 }
+
+const getOneEvent = async (id) => {
+ return await Event.findByPk(id)
+}
+
 
 module.exports = {
   listEvents,
-  createEvent
+  createEvent,
+  getOneEvent
 };
