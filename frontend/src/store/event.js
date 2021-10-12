@@ -14,9 +14,9 @@ const addEvent = event => ({
   event
 })
 
-const loadPoolHalls = poolHall => ({
+const loadPoolHalls = poolHalls => ({
   type: LOAD_POOLHALLS,
-  poolHall
+  poolHalls
 })
 
 
@@ -36,6 +36,19 @@ export const getOneEvent = (id) => async dispatch => {
     const event = await res.json()
     dispatch(addEvent(event))
     return event
+  }
+}
+
+export const editEvent = (payload) => async dispatch => {
+  const res = csrfFetch(`/api/event/${payload.id}`, {
+    method: 'PUT',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(payload)
+  })
+
+  if(res.ok){
+    const updateEvent = await res.json()
+    dispatch(addEvent(updateEvent))
   }
 }
 
@@ -92,7 +105,7 @@ const eventReducer = (state = initialState, action) => {
     case LOAD_POOLHALLS: {
       return {
         ...state,
-        poolHalls: action.poolHall
+        poolHalls: action.poolHalls
       }
     }
     default:
