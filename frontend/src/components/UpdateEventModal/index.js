@@ -7,9 +7,10 @@ import EditEventForm from "../SingleEvent/EditEvent";
 const UpdateEventModal = () => {
   const [showEditEventModal, setShowEditEventModal] = useState(false)
 
+
   return(
     <div className="update-event-button=container">
-      <button className="update-event-button" onClick={() => setShowEditEventModal(true)}>Update Event</button>
+      <button value="showEditEventModal" className="update-event-button" onClick={() => setShowEditEventModal(true)}>Update Event</button>
       {showEditEventModal && (
         <Modal onClose={() => setShowEditEventModal(false)} >
           <EditEventForm setShowEditEventModal={setShowEditEventModal} />

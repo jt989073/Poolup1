@@ -13,12 +13,12 @@ const SingleEvent = () => {
   const events = useSelector(state=>state.event)
   const event = events.list[eventId]
   const poolHall = event?.PoolHall
-  const poolHallName = event?.PoolHall.name
-  const poolHallAddress = event?.PoolHall.address
-  const poolHallCity = event?.PoolHall.city
-  const poolHallState = event?.PoolHall.state
+  const poolHallName = event?.PoolHall?.name
+  const poolHallAddress = event?.PoolHall?.address
+  const poolHallCity = event?.PoolHall?.city
+  const poolHallState = event?.PoolHall?.state
 
-console.log(poolHallState)
+// console.log(poolHallState)
   useEffect(() => {
     dispatch(getOneEvent(eventId))
     // dispatch(getPoolHalls(poolHall))

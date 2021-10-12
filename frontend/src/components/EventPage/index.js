@@ -26,7 +26,16 @@ if(!events){
       {events.map(event =>
       <div className="event-container" key={event.id}>
         <div className="event">{`${event.name}`}</div>
-        <div className="event">{`${event.date}`}</div>
+        <div className="event">
+        {new Date(event.date).toLocaleDateString("en-US", {
+              weekday: "short",
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+              hour: "numeric",
+              minute: "numeric",
+            })}
+          </div>
       </div>)
       }
       </div>

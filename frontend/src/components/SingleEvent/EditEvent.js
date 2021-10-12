@@ -3,15 +3,24 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPoolHalls } from "../../store/event";
 import {useHistory} from 'react-router-dom'
 import { createEvent } from "../../store/event";
+import { editEvent } from "../../store/event";
+import {useParams} from 'react-router-dom'
 
 
 function EditEventForm({setShowEditEventModal}) {
+  const {eventId} = useParams()
   const history = useHistory()
   const dispatch = useDispatch()
   const ownerId = useSelector(state => state.session.user?.id)
+
+  const events = useSelector(state => state.event)
+  const event = events.list[eventId]
+
+  // console.log('>>>>>', event)
+
   const poolHalls = useSelector(state => state.event.poolHalls)
-  const [name, setName] = useState("");
-  const [date, setDate] = useState("");
+  const [name, setName] = useState(event?.name);
+  const [date, setDate] = useState(event?.date);
   const [poolHall, setPoolHall] = useState(1)
   const [playerAmount, setPlayerAmount] = useState(1)
 
@@ -22,25 +31,30 @@ function EditEventForm({setShowEditEventModal}) {
   const updatePlayerAmount = (e) => setPlayerAmount(e.target.value)
 
 
-//TODO: add useState for location
-
   const handleSubmit = async(e) => {
     e.preventDefault();
     const payload = {
+      ...event,
       ownerId,
       poolHallId: poolHall,
       name,
       date,
       playerAmount,
     }
-    let updatedEvent = await dispatch(createEvent(payload))
+    let updatedEvent = await dispatch(editEvent(payload))
+    console.log(updatedEvent)
     if (updatedEvent){
-      setShowEditEventModal(false)
     }
+    setShowEditEventModal(false)
   };
 
+
+  // useEffect(() => {
+  //   // dispatch(getPoolHalls())
+  // }, [])
     // console.log(poolHall)
-  return (
+
+  return(
     <div className="createEventModal">
       <div className="modalHeader">
         <p>Update Event</p>
@@ -56,7 +70,7 @@ function EditEventForm({setShowEditEventModal}) {
               required
             />
           </div>
-          <select value={poolHall} onChange={updateDate}>
+          <select value={poolHall} onChange={updatePoolHall}>
           {poolHalls.map(poolHall =>
             <option value={poolHall.id} key={poolHall.id}>{poolHall.name}</option>
           )}
@@ -66,7 +80,7 @@ function EditEventForm({setShowEditEventModal}) {
             <input
               type="date"
               value={date}
-              onChange={updatePoolHall}
+              onChange={updateDate}
               required
             />
           </div>

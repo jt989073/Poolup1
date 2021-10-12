@@ -40,7 +40,7 @@ export const getOneEvent = (id) => async dispatch => {
 }
 
 export const editEvent = (payload) => async dispatch => {
-  const res = csrfFetch(`/api/event/${payload.id}`, {
+  const res = csrfFetch(`/api/events/${payload.id}`, {
     method: 'PUT',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify(payload)
@@ -49,6 +49,7 @@ export const editEvent = (payload) => async dispatch => {
   if(res.ok){
     const updateEvent = await res.json()
     dispatch(addEvent(updateEvent))
+    return updateEvent
   }
 }
 
