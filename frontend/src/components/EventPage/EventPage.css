@@ -6,17 +6,37 @@
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.event-page-container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .event-container {
   display: flex;
+  background-color: rgb(0, 0, 0);
   justify-content: center;
-  align-content: space-between;
-  background-color: rgba(255, 255, 255, 0.246);
-  width: 800px;
+  align-content: center;
+  flex-direction: column;
+  /* align-content: space-between; */
+  width: 258px;
+  margin: 35px;
+  border-radius: 50px;
 }
 
 .event {
+  color: white;
   margin-top: 15px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.event-image {
+  height: 200px;
+  width: 250px;
+  border-radius: 10px;
 }
