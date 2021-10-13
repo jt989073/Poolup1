@@ -3,6 +3,7 @@ import { csrfFetch } from './csrf';
 const LOAD = 'event/LOAD';
 const ADD_ONE = 'event/ADD_ONE'
 const LOAD_POOLHALLS = 'event/LOAD_POOLHALLS'
+const DELETE = 'event/DELETE'
 
 const load = list => ({
   type: LOAD,
@@ -14,9 +15,14 @@ const addEvent = event => ({
   event
 })
 
-const loadPoolHalls = poolHall => ({
+const loadPoolHalls = poolHalls => ({
   type: LOAD_POOLHALLS,
-  poolHall
+  poolHalls
+})
+
+const deleteOne = event => ({
+  type: DELETE,
+  event
 })
 
 
@@ -39,6 +45,21 @@ export const getOneEvent = (id) => async dispatch => {
   }
 }
 
+export const editEvent = (payload) => async dispatch => {
+  const res = await csrfFetch(`/api/events/${payload.id}`, {
+    method: 'PUT',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(payload)
+  })
+
+  if(res.ok){
+    const updateEvent = await res.json()
+    console.log('>>>>>>', updateEvent)
+    dispatch(addEvent(updateEvent))
+    return updateEvent
+  }
+}
+
 
 export const createEvent = (payload) => async (dispatch) => {
   const res = await csrfFetch('/api/events', {
@@ -53,6 +74,19 @@ export const createEvent = (payload) => async (dispatch) => {
     return newEvent
   }
 }
+
+export const deleteEvent = (eventId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/events/${eventId}`, {
+    method: "delete",
+  });
+
+  if (response.ok) {
+    const { eventId } = await response.json();
+    dispatch(deleteOne(eventId));
+
+  }
+};
+
 
 export const getPoolHalls = () => async dispatch => {
   const res = await csrfFetch(`/api/poolHalls`)
@@ -80,24 +114,43 @@ const eventReducer = (state = initialState, action) => {
       });
       return {...state, list: allEvents}
     }
-    case ADD_ONE: {
-      const newList = {...state.list}
-        newList[action.event.id] = action.event
-      const newState = {
-          ...state,
-          list: newList,
-        }
-        return newState;
+    // case ADD_ONE: {
+    //   const newList = {...state.list}
+    //     newList[action.event.id] = action.event
+    //   const newState = {
+    //       ...state,
+    //       list: newList,
+    //     }
+    //     return newState;
+    // }
+    case ADD_ONE:{
+      const newState = {...state}
+      newState.list[action.event.id] = action.event
+      return newState
     }
     case LOAD_POOLHALLS: {
       return {
         ...state,
-        poolHalls: action.poolHall
+        poolHalls: action.poolHalls
       }
+    }
+    case DELETE:{
+      const newState = {...state}
+      delete newState.list[action.event.id]
+      return newState
     }
     default:
       return state;
   }
 };
+
+// case DELETE_EVENT: {
+//   const newState = { ...state };
+//   const newList = {...newState.list}
+//   delete newList[action.eventId];
+//   newState.list = newList;
+//   return newState;
+// }
+
 
 export default eventReducer;

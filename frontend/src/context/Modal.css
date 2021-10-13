@@ -19,6 +19,17 @@
 }
 
 #modal-content {
+  background: url("https://res.cloudinary.com/dqwy6sxtc/image/upload/v1633834797/poolupp/pen-tsai-yUpn_S_x5BU-unsplash_qdlgct.jpg") no-repeat 100% 100%;
   position: absolute;
   background-color:white;
 }
+
+
+/* .splash-image {
+  height: 1000px;
+  width: 100%;
+
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: cover;
+} */

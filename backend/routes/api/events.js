@@ -48,5 +48,20 @@ router.get(
   })
 );
 
+router.put(
+  "/:id",
+  asyncHandler(async (req, res) => {
+    const id = await EventRepository.update(req.body);
+    const event = await EventRepository.getOneEvent(id);
+    return res.json(event);
+  })
+);
+
+router.delete('/:id', asyncHandler(async (req, res)=>{
+  const eventId = await EventRepository.deleteEvent(req.params.id)
+  return res.json({eventId})
+}))
+
+
 //TODO: add image url
 module.exports = router;

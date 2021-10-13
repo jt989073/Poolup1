@@ -3,47 +3,60 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPoolHalls } from "../../store/event";
 import {useHistory} from 'react-router-dom'
 import { createEvent } from "../../store/event";
-import "./EventPage.css";
+import { editEvent } from "../../store/event";
+import {useParams} from 'react-router-dom'
 
 
-function CreateEventForm({setShowEventModal}) {
+function EditEventForm({setShowEditEventModal}) {
+  const {eventId} = useParams()
   const history = useHistory()
   const dispatch = useDispatch()
   const ownerId = useSelector(state => state.session.user?.id)
+
+  const events = useSelector(state => state.event)
+  const event = events.list[eventId]
+
+  // console.log('>>>>>', event)
+
   const poolHalls = useSelector(state => state.event.poolHalls)
-  const [name, setName] = useState("");
-  const [date, setDate] = useState("");
+  const [name, setName] = useState(event?.name);
+  const [date, setDate] = useState(event?.date);
   const [poolHall, setPoolHall] = useState(1)
   const [playerAmount, setPlayerAmount] = useState(1)
 
 
-  useEffect(() => {
-    dispatch(getPoolHalls())
-  }, [dispatch])
+  const updateName = (e) => setName(e.target.value);
+  const updateDate = (e) => setDate(e.target.value)
+  const updatePoolHall = (e) => setPoolHall(e.target.value)
+  const updatePlayerAmount = (e) => setPlayerAmount(e.target.value)
 
-//TODO: add useState for location
 
   const handleSubmit = async(e) => {
     e.preventDefault();
     const payload = {
+      ...event,
       ownerId,
       poolHallId: poolHall,
       name,
       date,
       playerAmount,
     }
-    let createdEvent = await dispatch(createEvent(payload))
-    if (createdEvent){
-      history.push(`/events/${createdEvent.id}`)
-      setShowEventModal(false)
+    let updatedEvent = await dispatch(editEvent(payload))
+    console.log(updatedEvent)
+    if (updatedEvent){
     }
+    setShowEditEventModal(false)
   };
 
-    // console.log(poolHall)
-  return (
+
+  useEffect(() => {
+    dispatch(getPoolHalls())
+  }, [dispatch])
+
+  return(
     <div className="createEventModal">
       <div className="modalHeader">
-        <p>Create Event</p>
+        <p>Update Event</p>
       </div>
       <div>
         <form onSubmit={handleSubmit}>
@@ -52,11 +65,11 @@ function CreateEventForm({setShowEventModal}) {
             <input
               type="text"
               value={name}
-              onChange={(e) => setName(e.target.value)}
+              onChange={updateName}
               required
             />
           </div>
-          <select value={poolHall} onChange={(e) => setPoolHall(e.target.value)}>
+          <select value={poolHall} onChange={updatePoolHall}>
           {poolHalls.map(poolHall =>
             <option value={poolHall.id} key={poolHall.id}>{poolHall.name}</option>
           )}
@@ -66,7 +79,7 @@ function CreateEventForm({setShowEventModal}) {
             <input
               type="date"
               value={date}
-              onChange={(e) => setDate(e.target.value)}
+              onChange={updateDate}
               required
             />
           </div>
@@ -84,12 +97,12 @@ function CreateEventForm({setShowEventModal}) {
             <input
               type="number"
               value={playerAmount}
-              onChange={(e) => setPlayerAmount(e.target.value)}
+              onChange={updatePlayerAmount}
               required
             />
           </div>
-          <div className="createEventButton">
-            <button type="submit">Create Event</button>
+          <div className="update-Button">
+            <button type="submit">Update Event</button>
           </div>
         </form>
       </div>
@@ -98,4 +111,4 @@ function CreateEventForm({setShowEventModal}) {
 }
 
 
-export default CreateEventForm;
+export default EditEventForm;
