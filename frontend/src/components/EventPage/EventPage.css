@@ -18,18 +18,19 @@
 
 .event-container {
   display: flex;
-  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.322);
+  border: 3px solid black;
   justify-content: center;
   align-content: center;
   flex-direction: column;
-  /* align-content: space-between; */
   width: 258px;
+  height: 400px;
   margin: 35px;
-  border-radius: 50px;
+  border-radius: 5px;
 }
 
 .event {
-  color: white;
+  color: rgb(194, 192, 192);
   margin-top: 15px;
   padding: 10px;
   border-radius: 10px;
@@ -38,5 +39,6 @@
 .event-image {
   height: 200px;
   width: 250px;
+  margin-left: 4px;
   border-radius: 10px;
 }

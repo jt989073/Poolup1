@@ -31,7 +31,7 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <Link to= "/events">
+      <Link className="link-button" to= "/events">
         <button className="event-button">Events</button>
       </Link>
       <button className="profile-button" onClick={openMenu}>
