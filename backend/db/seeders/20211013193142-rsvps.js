@@ -23,7 +23,7 @@ module.exports = {
 
         },
         {
-          eventId: 4,
+          eventId: 1,
           userId: 1,
         }
       ]

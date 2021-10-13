@@ -44,10 +44,15 @@ router.post(
     }),
   );
 
-router.get('/:id', asyncHandler(async(_req, res) => {
-  // console.log(">>>>>>>>>>>>>>>>>>>>>>>>")
+router.get('/:id/events', asyncHandler(async(_req, res) => {
   const {id} = _req.params
-  const events = await UserRepository.listMyEvents(id)
+  const events = await UserRepository.listMyHostedEvents(id)
+  return res.json(events)
+}))
+
+router.get('/:id/attending', asyncHandler(async(_req, res) => {
+  const {id} = _req.params
+  const events = await UserRepository.listMyAttendingEvents(id)
   return res.json(events)
 }))
 

@@ -2,17 +2,21 @@ const {Event} = require("./models")
 const {RSVP} = require('./models')
 const {User} = require('./models')
 
-const listMyEvents = async (userId) => {
-  return await User.findAll(
-    {
-    where: userId,
-    include: {model: Event} //
-  }
-  )
+const listMyHostedEvents = async (id) => {
+  return await User.findByPk(id, {
+    include: Event
+  });
+}
+
+const listMyAttendingEvents = async(id) => {
+  return await User.findByPk(id, {
+    include: "reservations"
+  });
 }
 
 
 
 module.exports={
-  listMyEvents
+  listMyHostedEvents,
+  listMyAttendingEvents
 }
