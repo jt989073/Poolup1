@@ -4,10 +4,22 @@ const LOAD = 'event/LOAD';
 const ADD_ONE = 'event/ADD_ONE'
 const LOAD_POOLHALLS = 'event/LOAD_POOLHALLS'
 const DELETE = 'event/DELETE'
+const LOAD_ATTENDING = 'event/LOAD_ATTENDING'
+const LOAD_HOSTING = 'event/LOAD_HOSTING'
 
 const load = list => ({
   type: LOAD,
   list,
+});
+
+const loadAttending = events => ({
+  type: LOAD_ATTENDING,
+  events,
+});
+
+const loadHosting = events => ({
+  type: LOAD_HOSTING,
+  events,
 });
 
 const addEvent = event => ({
@@ -28,7 +40,6 @@ const deleteOne = event => ({
 
 export const getEvents = () => async (dispatch) => {
   const res = await csrfFetch("/api/events");
-  console.log(res)
   if (res.ok) {
     const listEvents = await res.json();
     dispatch(load(listEvents));
@@ -45,6 +56,22 @@ export const getOneEvent = (id) => async dispatch => {
   }
 }
 
+export const getMyHostedEvents = (id) => async dispatch => {
+  const res = await csrfFetch(`/api/users/${id}/my-events`)
+  if (res.ok) {
+    const listEvents = await res.json()
+    dispatch(loadHosting(listEvents.reservations))
+  }
+}
+
+export const getMyAttendingEvents = (id) => async dispatch => {
+  const res = await csrfFetch(`/api/users/${id}/attending`)
+  if (res.ok) {
+    const listEvents = await res.json()
+    dispatch(loadAttending(listEvents.reservations))
+  }
+}
+
 export const editEvent = (payload) => async dispatch => {
   const res = await csrfFetch(`/api/events/${payload.id}`, {
     method: 'PUT',
@@ -54,7 +81,6 @@ export const editEvent = (payload) => async dispatch => {
 
   if(res.ok){
     const updateEvent = await res.json()
-    console.log('>>>>>>', updateEvent)
     dispatch(addEvent(updateEvent))
     return updateEvent
   }
@@ -101,9 +127,10 @@ export const getPoolHalls = () => async dispatch => {
 const initialState = {
   list: [],
   poolHalls: [],
+  attending: [],
+  hosting: []
 };
 
-// TODO: sort list by createdAt
 
 const eventReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -114,15 +141,16 @@ const eventReducer = (state = initialState, action) => {
       });
       return {...state, list: allEvents}
     }
-    // case ADD_ONE: {
-    //   const newList = {...state.list}
-    //     newList[action.event.id] = action.event
-    //   const newState = {
-    //       ...state,
-    //       list: newList,
-    //     }
-    //     return newState;
-    // }
+    case LOAD_ATTENDING: {
+      const newState = {...state}
+      newState.attending = action.events
+      return newState
+    }
+    case LOAD_HOSTING: {
+      const newState = {...state}
+      newState.hosting = action.events
+      return newState
+    }
     case ADD_ONE:{
       const newState = {...state}
       newState.list[action.event.id] = action.event
@@ -143,14 +171,5 @@ const eventReducer = (state = initialState, action) => {
       return state;
   }
 };
-
-// case DELETE_EVENT: {
-//   const newState = { ...state };
-//   const newList = {...newState.list}
-//   delete newList[action.eventId];
-//   newState.list = newList;
-//   return newState;
-// }
-
 
 export default eventReducer;
