@@ -6,6 +6,7 @@ import { getPoolHalls } from '../../store/event';
 import UpdateEventModal from '../UpdateEventModal';
 import { deleteEvent } from '../../store/event';
 import { useHistory } from 'react-router-dom';
+import './SingleEvent.css'
 
 const SingleEvent = () => {
   const {eventId} = useParams()

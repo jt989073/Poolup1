@@ -13,6 +13,7 @@ let newEvents = [
     poolHallId: 36,
     groupId: 14,
     name: "Slims Shootout",
+    image:" https://res.cloudinary.com/dqwy6sxtc/image/upload/v1634093307/poolupp/erik-mclean-a8dkA26FLYg-unsplash_im6395.jpg",
     date: faker.date.between("2021-10-23", "2021-11-23"),
     Attending: false,
     playerAmount: 32,

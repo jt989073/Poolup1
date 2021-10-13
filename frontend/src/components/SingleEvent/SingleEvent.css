@@ -1,0 +1,24 @@
+.single-event-container{
+  height: 1000px;
+  width: 100%;
+  background-image: url("https://res.cloudinary.com/dqwy6sxtc/image/upload/v1634105013/poolupp/macie-jones-W1H55j7XNno-unsplash_1_tkfnqx.jpg");
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+}
+
+.delete-button{
+  height: 35px;
+  width: 80px;
+  background-color: rgba(0, 0, 0, 0.24);
+  border: 2px solid black;
+  border-radius: 3px;
+  color: white;
+}
+
+.delete-button:hover {
+  background-color: black;
+}

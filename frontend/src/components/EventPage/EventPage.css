@@ -6,17 +6,39 @@
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.event-page-container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .event-container {
   display: flex;
+  background-color: rgba(0, 0, 0, 0.322);
+  border: 3px solid black;
   justify-content: center;
-  align-content: space-between;
-  background-color: rgba(255, 255, 255, 0.246);
-  width: 800px;
+  align-content: center;
+  flex-direction: column;
+  width: 258px;
+  height: 400px;
+  margin: 35px;
+  border-radius: 5px;
 }
 
 .event {
+  color: rgb(194, 192, 192);
   margin-top: 15px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.event-image {
+  height: 200px;
+  width: 250px;
+  margin-left: 4px;
+  border-radius: 10px;
 }
