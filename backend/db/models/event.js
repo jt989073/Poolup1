@@ -38,13 +38,12 @@ module.exports = (sequelize, DataTypes) => {
       otherKey: "userId",
       foreignKey: "eventId",
       as: "reservations",
-      onDelete: "CASCADE",
-      hooks: true
     }
     Event.belongsTo(models.User, {foreignKey: "ownerId"})
     Event.belongsToMany(models.User, columnMapping)
-    Event.belongsTo(models.Group, {foreignKey: "groupId", onDelete: "CASCADE", hooks: true})
-    Event.belongsTo(models.PoolHall, {foreignKey: "poolHallId", onDelete: "CASCADE", hooks: true})
+    Event.hasMany(models.RSVP, {foreignKey: "eventId", as:"rsvps", onDelete: "CASCADE", hooks: true})
+    Event.belongsTo(models.Group, {foreignKey: "groupId"})
+    Event.belongsTo(models.PoolHall, {foreignKey: "poolHallId"})
   };
   return Event;
 };

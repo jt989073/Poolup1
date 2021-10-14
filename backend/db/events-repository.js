@@ -31,7 +31,7 @@ const deleteEvent = async (eventId) => {
   const event = await Event.findByPk(eventId)
   if(!event) throw new Error('Event does not exist')
 
-  await Event.destroy({where: {id: event.id}})
+  await event.destroy()
   return event.id
 }
 

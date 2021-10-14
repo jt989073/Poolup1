@@ -38,9 +38,9 @@ const loadPoolHalls = (poolHalls) => ({
   poolHalls,
 });
 
-const deleteOne = (event) => ({
+const deleteOne = (eventId) => ({
   type: DELETE,
-  event,
+  eventId,
 });
 
 export const getEvents = () => async (dispatch) => {
@@ -178,7 +178,7 @@ const eventReducer = (state = initialState, action) => {
     }
     case DELETE: {
       const newState = { ...state };
-      delete newState.list[action.event.id];
+      delete newState.list[action.eventId];
       return newState;
     }
     case ADD_RSVP: {
