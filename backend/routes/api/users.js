@@ -59,4 +59,10 @@ router.get(
   })
 );
 
+router.post('/:id/attending', asyncHandler(async(_req,res) => {
+  // const {id} = _req.params
+  const RSVP = await UserRepository.createRSVP(_req.body);
+  return res.json(RSVP)
+}))
+
 module.exports = router;

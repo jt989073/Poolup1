@@ -14,9 +14,13 @@ const listMyAttendingEvents = async(id) => {
   });
 }
 
+const createRSVP = async (details) => {
+  return await RSVP.create(details)
+}
 
 
 module.exports={
   listMyHostedEvents,
-  listMyAttendingEvents
+  listMyAttendingEvents,
+  createRSVP
 }
