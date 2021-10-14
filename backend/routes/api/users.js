@@ -42,7 +42,7 @@ router.post(
 );
 
 router.get(
-  "/:id/my-events",
+  "/:id/hosting",
   asyncHandler(async (_req, res) => {
     const { id } = _req.params;
     const events = await UserRepository.listMyHostedEvents(id);
