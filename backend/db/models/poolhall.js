@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   PoolHall.associate = function(models) {
     // associations can be defined here
-    PoolHall.hasMany(models.Event, {foreignKey: "poolHallId"})
+    PoolHall.hasMany(models.Event, {foreignKey: "poolHallId", onDelete: "CASCADE", hooks: true})
   };
   return PoolHall;
 };

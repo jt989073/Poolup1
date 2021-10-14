@@ -15,11 +15,13 @@ module.exports = (sequelize, DataTypes) => {
     const groupColumnMapping = {
       through: "UserGroups",
       otherKey: "userId",
-      foreignKey: "groupId"
+      foreignKey: "groupId",
+      onDelete: "CASCADE",
+     hooks: true
     }
 
     Group.belongsToMany(models.User, groupColumnMapping)
-    Group.hasMany(models.Event, {foreignKey: "groupId"})
+    Group.hasMany(models.Event, {foreignKey: "groupId", onDelete: "CASCADE", hooks: true})
   };
   return Group;
 };

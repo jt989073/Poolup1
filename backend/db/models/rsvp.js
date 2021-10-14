@@ -13,7 +13,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {});
   RSVP.associate = function(models) {
-    // associations can be defined here
+    RSVP.belongsTo(models.Event, {foreignKey: "eventId", onDelete: "CASCADE", hooks: true})
+    RSVP.belongsTo(models.User, {foreignKey: "userId", onDelete: "CASCADE", hooks: true})
   };
   return RSVP;
 };

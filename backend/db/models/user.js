@@ -52,13 +52,17 @@ module.exports = (sequelize, DataTypes) => {
       through: "RSVPs",
       otherKey: "eventId",
       foreignKey: "userId",
-      as: "reservations"
+      as: "reservations",
+      onDelete: "CASCADE",
+      hooks: true
     }
 
     const groupColumnMapping = {
       through: "UserGroups",
       otherKey: "groupId",
-      foreignKey: "userId"
+      foreignKey: "userId",
+      onDelete: "CASCADE",
+      hooks: true
     }
     User.hasMany(models.Event, {foreignKey: "ownerId"})
     User.belongsToMany(models.Event, eventColumnMapping)

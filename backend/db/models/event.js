@@ -37,12 +37,14 @@ module.exports = (sequelize, DataTypes) => {
       through: "RSVPs",
       otherKey: "userId",
       foreignKey: "eventId",
-      as: "reservations"
+      as: "reservations",
+      onDelete: "CASCADE",
+      hooks: true
     }
     Event.belongsTo(models.User, {foreignKey: "ownerId"})
     Event.belongsToMany(models.User, columnMapping)
-    Event.belongsTo(models.Group, {foreignKey: "groupId"})
-    Event.belongsTo(models.PoolHall, {foreignKey: "poolHallId"})
+    Event.belongsTo(models.Group, {foreignKey: "groupId", onDelete: "CASCADE", hooks: true})
+    Event.belongsTo(models.PoolHall, {foreignKey: "poolHallId", onDelete: "CASCADE", hooks: true})
   };
   return Event;
 };
