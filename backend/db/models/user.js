@@ -51,7 +51,8 @@ module.exports = (sequelize, DataTypes) => {
     const eventColumnMapping = {
       through: "RSVPs",
       otherKey: "eventId",
-      foreignKey: "userId"
+      foreignKey: "userId",
+      as: "reservations"
     }
 
     const groupColumnMapping = {

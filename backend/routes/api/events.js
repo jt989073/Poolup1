@@ -9,6 +9,7 @@ const Event = require("../../db/models");
 router.get(
   "/",
   asyncHandler(async (req, res) => {
+    console.log(">>>>>>>>>>>>>>>>>>>>>")
     const events = await EventRepository.listEvents();
     return res.json(events);
   })

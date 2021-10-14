@@ -7,6 +7,8 @@ import Navigation from "./components/Navigation";
 import Splash from "./components/SplashPage";
 import EventPage from "./components/EventPage";
 import SingleEvent from "./components/SingleEvent";
+import AttendingPage from "./components/Attending";
+import HostingPage from "./components/Hosting";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,6 +33,12 @@ function App() {
           </Route>
           <Route path='/events/:eventId'>
             <SingleEvent />
+          </Route>
+          <Route path='/users/:userId/attending'>
+            <AttendingPage />
+          </Route>
+          <Route path='/users/:userId/hosting'>
+            <HostingPage />
           </Route>
         </Switch>
       )}
