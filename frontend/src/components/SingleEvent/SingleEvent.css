@@ -7,6 +7,7 @@
   background-size: cover;
   display: flex;
   flex-direction: column;
+  /* margin-top: 15px; */
   /* justify-content: center; */
 }
 
@@ -17,8 +18,40 @@
   border: 2px solid black;
   border-radius: 3px;
   color: white;
+  margin-right: 38vw;
 }
 
 .delete-button:hover {
   background-color: black;
+}
+
+.event-image{
+  /* height: 90vh; */
+}
+
+
+.RSVP-button{
+  height: 35px;
+  width: 80px;
+  background-color: rgba(0, 0, 0, 0.24);
+  border: 2px solid black;
+  border-radius: 3px;
+  color: white;
+}
+
+.RSVP-button:hover {
+  background-color: black;
+}
+
+.update-delete-container{
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.event-info{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
 }

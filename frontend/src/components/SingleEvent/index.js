@@ -27,6 +27,7 @@ const SingleEvent = () => {
   const poolHallState = event?.PoolHall?.state
 
 
+
   useEffect(() => {
     dispatch(getOneEvent(eventId))
   }, [dispatch, eventId])
@@ -45,29 +46,36 @@ const SingleEvent = () => {
 
 return (
   <div className="single-event-container">
-    <UpdateEventModal />
-    <button onClick={() =>{
-      dispatch(deleteEvent(eventId))
-      history.push('/events')
-      }} className="delete-button">Delete Event</button>
-    <div className="event-name">{event?.name}</div>
-    <div className="event-date">{event?.date}</div>
-    <div className="event-date-poolHall">
-      <div>
-        {poolHallName}
-      </div>
-      <div>
-        {poolHallAddress}
-      </div>
-      <div>
-        {poolHallCity}
-      </div>
-      <div>
-        {poolHallState}
-      </div>
+    <div className="update-delete-container">
+      <UpdateEventModal />
+      <button onClick={() =>{
+        dispatch(deleteEvent(eventId))
+        history.push('/events')
+        }} className="delete-button">
+          Delete Event
+      </button>
     </div>
-    <div className="event-playerAmount">{event?.playeAmount}</div>
-    <button onClick={handleSubmit}>RSVP</button>
+    <div className="event-info">
+      <img className="event-image" src={event?.image} alt="" />
+      <div className="event-name">{event?.name}</div>
+      <div className="event-date">{event?.date}</div>
+      <div className="event-date-poolHall">
+        <div>
+          {poolHallName}
+        </div>
+        <div>
+          {poolHallAddress}
+        </div>
+        <div>
+          {poolHallCity}
+        </div>
+        <div>
+          {poolHallState}
+        </div>
+      </div>
+      <div className="event-playerAmount">{event?.playeAmount}</div>
+      <button className="RSVP-button" onClick={handleSubmit}>RSVP</button>
+    </div>
   </div>
 )
 

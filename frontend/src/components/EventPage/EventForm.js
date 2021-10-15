@@ -15,13 +15,22 @@ function CreateEventForm({setShowEventModal}) {
   const [date, setDate] = useState("");
   const [poolHall, setPoolHall] = useState(1)
   const [playerAmount, setPlayerAmount] = useState(1)
+  const [errors, setErrors] = useState([])
 
+
+
+  useEffect(() => {
+    const errors = []
+    if(name.length < 5) errors.push("Name must be longer than 5 characters")
+    if(!date) errors.push("Please provide a date that is in the future")
+    if(!poolHall) errors.push("Please provide a pool Hall locatiopn")
+    setErrors(errors)
+  }, [name, date, poolHall, errors])
 
   useEffect(() => {
     dispatch(getPoolHalls())
   }, [dispatch])
 
-//TODO: add useState for location
 
   const handleSubmit = async(e) => {
     e.preventDefault();
@@ -45,6 +54,9 @@ function CreateEventForm({setShowEventModal}) {
       <div className="modalHeader">
         <p>Create Event</p>
       </div>
+      {errors.map(error => (
+        <li key={error}>{error}</li>
+      ))}
       <div>
         <form onSubmit={handleSubmit}>
           <div className="fieldDiv">
@@ -89,7 +101,7 @@ function CreateEventForm({setShowEventModal}) {
             />
           </div>
           <div className="createEventButton">
-            <button type="submit">Create Event</button>
+            <button disabled={errors.length > 0}type="submit">Create Event</button>
           </div>
         </form>
       </div>

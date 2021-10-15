@@ -63,5 +63,5 @@ router.delete('/:id', asyncHandler(async (req, res)=>{
 }))
 
 
-//TODO: add image url
+
 module.exports = router;
