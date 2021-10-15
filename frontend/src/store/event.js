@@ -6,8 +6,8 @@ const LOAD_POOLHALLS = "event/LOAD_POOLHALLS";
 const DELETE = "event/DELETE";
 const LOAD_ATTENDING = "event/LOAD_ATTENDING";
 const LOAD_HOSTING = "event/LOAD_HOSTING";
-const ADD_RSVP = "event/ADD_RSVP"
-const DELETE_RSVP = "event/DELETE_RSVP"
+const ADD_RSVP = "event/ADD_RSVP";
+const DELETE_RSVP = "event/DELETE_RSVP";
 
 const load = (list) => ({
   type: LOAD,
@@ -31,8 +31,8 @@ const addEvent = (event) => ({
 
 const addRSVP = (event) => ({
   type: ADD_RSVP,
-  event
-})
+  event,
+});
 
 const loadPoolHalls = (poolHalls) => ({
   type: LOAD_POOLHALLS,
@@ -85,26 +85,26 @@ export const getMyAttendingEvents = (id) => async (dispatch) => {
 
 export const createAttendingEvent = (payload, id) => async (dispatch) => {
   const res = await csrfFetch(`/api/users/${id}/attending`, {
-    method: 'POST',
-    headers: {'Content-Type': "application/json"},
-    body: JSON.stringify(payload)
-  })
-  if(res.ok){
-    const createdRSVP = res.json()
-    dispatch(addRSVP(createdRSVP))
-    return createdRSVP
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  if (res.ok) {
+    const createdRSVP = res.json();
+    dispatch(addRSVP(createdRSVP));
+    return createdRSVP;
   }
-}
+};
 
 export const deleteAttendingEvent = (userId, eventId) => async (dispatch) => {
   const res = await csrfFetch(`/api/users/${userId}/attending/${eventId}`, {
-    method: 'DELETE'
-  })
-  if (res.ok){
-    const deletedRSVP = res.json()
-    dispatch(deleteRSVP(eventId))
+    method: "DELETE",
+  });
+  if (res.ok) {
+    const deletedRSVP = res.json();
+    dispatch(deleteRSVP(eventId));
   }
-}
+};
 
 export const editEvent = (payload) => async (dispatch) => {
   const res = await csrfFetch(`/api/events/${payload.id}`, {
@@ -198,15 +198,17 @@ const eventReducer = (state = initialState, action) => {
       return newState;
     }
     case ADD_RSVP: {
-      const newState = {...state}
-      newState.attending.push(action.event)
-      return newState
+      const newState = { ...state };
+      newState.attending.push(action.event);
+      return newState;
     }
     case DELETE_RSVP: {
-      const newState = {...state}
-      const newArr = newState.attending.filter(rsvp => rsvp.id !== action.eventId)
-      newState.attending = newArr
-      return newState
+      const newState = { ...state };
+      const newArr = newState.attending.filter(
+        (rsvp) => rsvp.id !== action.eventId
+      );
+      newState.attending = newArr;
+      return newState;
     }
     default:
       return state;
