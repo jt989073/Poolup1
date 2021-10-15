@@ -60,9 +60,13 @@ router.get(
 );
 
 router.post('/:id/attending', asyncHandler(async(_req,res) => {
-  // const {id} = _req.params
   const RSVP = await UserRepository.createRSVP(_req.body);
   return res.json(RSVP)
+}))
+
+router.delete('/:id/attending/:eventId', asyncHandler(async(req,res) => {
+  const rsvpId = await UserRepository.deleteRSVP(req.params.id, req.params.eventId)
+  return res.json(rsvpId)
 }))
 
 module.exports = router;

@@ -31,22 +31,6 @@ console.log('>>>>>>>', eventId)
     dispatch(getOneEvent(eventId))
   }, [dispatch, eventId])
 
-  // const handleSubmit = async(e) => {
-  //   e.preventDefault();
-  //   const payload = {
-  //     ownerId,
-  //     poolHallId: poolHall,
-  //     name,
-  //     date,
-  //     playerAmount,
-  //   }
-  //   let createdEvent = await dispatch(createEvent(payload))
-  //   if (createdEvent){
-  //     history.push(`/events/${createdEvent.id}`)
-  //     setShowEventModal(false)
-  //   }
-  // };
-
   const handleSubmit = async (e) => {
     e.preventDefault()
     const payload = {
