@@ -26,7 +26,7 @@ const SingleEvent = () => {
   const poolHallCity = event?.PoolHall?.city
   const poolHallState = event?.PoolHall?.state
 
-console.log('>>>>>>>', eventId)
+
   useEffect(() => {
     dispatch(getOneEvent(eventId))
   }, [dispatch, eventId])

@@ -39,7 +39,7 @@ function CreateEventForm({setShowEventModal}) {
     }
   };
 
-    // console.log(poolHall)
+
   return (
     <div className="createEventModal">
       <div className="modalHeader">

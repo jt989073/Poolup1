@@ -16,7 +16,6 @@ function EditEventForm({setShowEditEventModal}) {
   const events = useSelector(state => state.event)
   const event = events.list[eventId]
 
-  // console.log('>>>>>', event)
 
   const poolHalls = useSelector(state => state.event.poolHalls)
   const [name, setName] = useState(event?.name);
