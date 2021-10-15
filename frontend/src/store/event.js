@@ -8,6 +8,8 @@ const LOAD_ATTENDING = "event/LOAD_ATTENDING";
 const LOAD_HOSTING = "event/LOAD_HOSTING";
 const ADD_RSVP = "event/ADD_RSVP";
 const DELETE_RSVP = "event/DELETE_RSVP";
+const LOAD_RSVPS = "event/LOAD_RSVPS"
+
 
 const load = (list) => ({
   type: LOAD,
@@ -23,6 +25,11 @@ const loadHosting = (events) => ({
   type: LOAD_HOSTING,
   events,
 });
+
+const loadRsvps = (rsvps) => ({
+  type: LOAD_RSVPS,
+  rsvps
+})
 
 const addEvent = (event) => ({
   type: ADD_ONE,
@@ -66,6 +73,16 @@ export const getOneEvent = (id) => async (dispatch) => {
     return event;
   }
 };
+
+export const getRSVPS = (eventId) => async (dispatch) => {
+  const res = await csrfFetch(`/api/rsvps/${eventId}`)
+
+  if(res.ok){
+    const rsvp = await res.json()
+    dispatch(loadRsvps(rsvp))
+    return rsvp
+  }
+}
 
 export const getMyHostedEvents = (id) => async (dispatch) => {
   const res = await csrfFetch(`/api/users/${id}/hosting`);
@@ -160,6 +177,7 @@ const initialState = {
   poolHalls: [],
   attending: [],
   hosting: [],
+  rsvps: []
 };
 
 const eventReducer = (state = initialState, action) => {
@@ -196,6 +214,9 @@ const eventReducer = (state = initialState, action) => {
       const newState = { ...state };
       delete newState.list[action.eventId];
       return newState;
+    }
+    case LOAD_RSVPS: {
+      return {...state, rsvps: action.rsvps}
     }
     case ADD_RSVP: {
       const newState = { ...state };

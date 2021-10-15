@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import * as sessionActions from '../../store/session'
@@ -8,6 +9,7 @@ import './Navigation.css';
 
 function Navigation({ isLoaded }){
   const dispatch = useDispatch()
+  const history = useHistory()
   const sessionUser = useSelector(state => state.session.user);
   const [credential, setCredential] = useState('')
   const [password, setPassword] = useState('')
@@ -15,6 +17,7 @@ function Navigation({ isLoaded }){
   const demoLogin = async () => {
     setCredential("Demo-lition")
     setPassword("password")
+    history.push('/events')
     return dispatch(
       sessionActions.login({credential: "Demo-lition", password: "password"})
     )

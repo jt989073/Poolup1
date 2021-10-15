@@ -21,7 +21,6 @@ const validateEvent = [
     .withMessage("Please provide an event Name with at least 5 characters"),
   check("date")
     .exists({ checkFalsy: true })
-    .isDate()
     .isAfter(new Date().toString())
     .withMessage("Please provide a date that is in the future for the event."),
   check("playerAmount")

@@ -22,10 +22,10 @@ module.exports = (sequelize, DataTypes) => {
     },
     date: {
       allowNull: false,
-      type: DataTypes.DATE
+      type: DataTypes.STRING
     },
     Attending: {
-      type: DataTypes.BOOLEAN
+      type: DataTypes.INTEGER
     },
     playerAmount: {
       type: DataTypes.INTEGER

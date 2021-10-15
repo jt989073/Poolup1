@@ -26,13 +26,13 @@ module.exports = {
       },
       date: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.STRING
       },
       image: {
         type: Sequelize.STRING,
       },
       Attending: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.INTEGER
       },
       playerAmount: {
         type: Sequelize.INTEGER
