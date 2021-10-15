@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
+import {useHistory} from 'react-router-dom'
 import { useDispatch } from "react-redux";
 import "./LoginForm.css"
 
 function LoginForm() {
+  const history = useHistory()
   const dispatch = useDispatch();
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
@@ -17,8 +19,10 @@ function LoginForm() {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
       }
-    );
+    )
   };
+
+  
 
   return (
     <form className="modal-container" onSubmit={handleSubmit}>

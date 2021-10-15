@@ -4,22 +4,26 @@ import { getMyHostedEvents } from "../../store/event";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 
+
 const HostingPage = () => {
   const { userId } = useParams();
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
 
-  const events = useSelector((state) => state.event.hosting.Events);
+
+
+  // const events = useSelector((state) => state?.event?.hosting?.Events);
+  const events = useSelector(state => state?.event?.hosting?.Events)
 
   useEffect(() => {
     dispatch(getMyHostedEvents(userId)).then(() => setIsLoading(true));
   }, [dispatch]);
 
-  if (isLoading) {
+
     return (
       <main className="event-page">
         <div className="event-page-container">
-          {events.map((event) => (
+          {events?.map((event) => (
             <div className="event-container" key={event.id}>
               <Link to={`/events/${event.id}`}>
                 <img className="event-image" src={event.image} alt="" />
@@ -35,14 +39,12 @@ const HostingPage = () => {
                   minute: "numeric",
                 })}
               </p>
+
             </div>
           ))}
         </div>
       </main>
     );
-  } else {
-    return null;
-  }
 };
 
 export default HostingPage;

@@ -3,10 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { getMyAttendingEvents } from "../../store/event";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
+import { deleteAttendingEvent } from "../../store/event";
 
 const AttendingPage = () => {
   const { userId } = useParams();
   const dispatch = useDispatch();
+
 
   const events = useSelector(state=> state.event.attending)
 
@@ -16,6 +18,10 @@ const AttendingPage = () => {
   useEffect(() => {
     dispatch(getMyAttendingEvents(userId));
   }, [dispatch]);
+
+  const handleDelete = (event) => {
+    dispatch(deleteAttendingEvent(userId, event.id))
+  }
 
   return (
     <main className="event-page">
@@ -36,6 +42,7 @@ const AttendingPage = () => {
               minute: "numeric",
             })}
           </p>
+          <button onClick={() => handleDelete(event)}>Cancel RSVP</button>
       </div>)
       }
     </div>
