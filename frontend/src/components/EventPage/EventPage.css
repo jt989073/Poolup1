@@ -1,17 +1,16 @@
 .event-page {
-  height: 1000px;
+  height: 100%;
   width: 100%;
   background-image: url("https://res.cloudinary.com/dqwy6sxtc/image/upload/v1634024575/poolupp/sven-mieke-jGpuUjgd-0U-unsplash_mppizm.jpg");
-  background-color: transparent;
-  background-repeat: no-repeat;
   background-size: cover;
+  background-size: 100% 100%;
   display: flex;
-  /* justify-content: center; */
+  justify-content: center;
+  align-content: center;
   flex-direction: row;
   flex-wrap: wrap;
 }
-.event-page-container{
-  /* height: 100vh; */
+.event-page-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -19,8 +18,11 @@
 
 .event-container {
   display: flex;
-  background-color: rgba(0, 0, 0, 0.322);
-  border: 3px solid black;
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0.8);
+  /* background-color: black; */
+  border: 3px solid rgba(255, 255, 255, 0.198);
+  /* box-shadow: 2px 2px black; */
   justify-content: center;
   align-content: center;
   flex-direction: column;
