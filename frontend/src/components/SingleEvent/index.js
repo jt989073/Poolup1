@@ -28,7 +28,10 @@ const SingleEvent = () => {
   const attendees = rsvpArr.length;
 
   const ownerId = event?.ownerId;
-  console.log(">>asdfasdfs>>", ownerId);
+
+  const rsvpCheck = () => {
+
+ }
 
   useEffect(() => {
     dispatch(getOneEvent(eventId));
@@ -41,6 +44,16 @@ const SingleEvent = () => {
       eventId,
       userId,
     };
+    const rsvpIdArr =  [...events?.rsvps].map(rsvp => rsvp.userId);
+    // console.log(rsvpIdArr)
+    for (let i = 0; i < rsvpIdArr.length; i++){
+      const ele = rsvpIdArr[i]
+      if (userId === ele){
+        window.alert("You are already Attending this event.")
+      } else {
+        break
+      }
+    }
     if (attendees < event?.playerAmount){
       let createdRSVP = await dispatch(createAttendingEvent(payload, eventId));
       if (createdRSVP) {

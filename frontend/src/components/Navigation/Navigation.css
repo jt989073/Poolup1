@@ -155,3 +155,17 @@
 .log-out{
   z-index: 100;
 }
+
+.profile-dropdown{
+  margin-right: 40px;
+  color: white;
+}
+
+.input-box {
+  height: 20px;
+}
+
+.container{
+  display: flex;
+  justify-content: flex-end;
+}
