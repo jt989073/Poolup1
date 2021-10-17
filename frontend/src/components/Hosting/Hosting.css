@@ -1,4 +1,4 @@
-.attending-event-page{
+.hosting-event-page {
   height: 100vh;
   width: 100%;
   background-image: url("https://res.cloudinary.com/dqwy6sxtc/image/upload/v1633834797/poolupp/pen-tsai-yUpn_S_x5BU-unsplash_qdlgct.jpg");
@@ -7,5 +7,4 @@
   background-size: cover;
   flex-direction: row;
     /* flex-wrap: wrap; */
-
 }

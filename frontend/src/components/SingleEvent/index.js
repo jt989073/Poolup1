@@ -24,13 +24,15 @@ const SingleEvent = () => {
   const poolHallAddress = event?.PoolHall?.address;
   const poolHallCity = event?.PoolHall?.city;
   const poolHallState = event?.PoolHall?.state;
-  const rsvpArr = useSelector(state => state?.event?.rsvps)
-  const attendees = rsvpArr.length
-  console.log(">>>>", attendees)
+  const rsvpArr = useSelector((state) => state?.event?.rsvps);
+  const attendees = rsvpArr.length;
+
+  const ownerId = event?.ownerId;
+  console.log(">>asdfasdfs>>", ownerId);
 
   useEffect(() => {
     dispatch(getOneEvent(eventId));
-    dispatch(getRSVPS(eventId))
+    dispatch(getRSVPS(eventId));
   }, [dispatch, eventId]);
 
   const handleSubmit = async (e) => {
@@ -39,50 +41,58 @@ const SingleEvent = () => {
       eventId,
       userId,
     };
-    let createdRSVP = await dispatch(createAttendingEvent(payload, eventId));
-    if (createdRSVP) {
-      history.push(`/users/${userId}/attending`);
+    if (attendees < event?.playerAmount){
+      let createdRSVP = await dispatch(createAttendingEvent(payload, eventId));
+      if (createdRSVP) {
+        history.push(`/users/${userId}/attending`);
+      }
+    } else {
+      window.alert("Event is full Bradley!")
     }
+  };
+
+  const handleDelete = (e) => {
+    e.preventDefault();
+    dispatch(deleteEvent(eventId));
+    history.push("/events");
   };
 
   return (
     <div className="single-event-container">
-      <div className="update-delete-container">
-        <UpdateEventModal />
-        <button
-          onClick={() => {
-            dispatch(deleteEvent(eventId));
-            history.push("/events");
-          }}
-          className="delete-button"
-        >
-          Delete Event
-        </button>
-      </div>
-      <div className="event-info">
-        <img className="event-image" src={event?.image} alt="" />
-        <div className="event-name">{event?.name}</div>
-        <div>{` ${attendees} / ${event?.playerAmount} people attending`}</div>
-        <div className="event-date">
-          {new Date(event?.date).toLocaleDateString("en-US", {
-            weekday: "short",
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-            hour: "numeric",
-            minute: "numeric",
-          })}
+      {ownerId === userId ? (
+        <div className="update-delete-container">
+          <UpdateEventModal />
+          <button onClick={handleDelete} className="delete-button">
+            Delete Event
+          </button>
         </div>
-        <div className="event-date-poolHall">
-          <div>{poolHallName}</div>
-          <div>{poolHallAddress}</div>
-          <div>{poolHallCity}</div>
-          <div>{poolHallState}</div>
+      ) : null}
+      <div className="event-info-container">
+        <div className="event-info">
+          <h2 className="event-name">{event?.name}</h2>
+          <div className="event-date">
+            {new Date(event?.date).toLocaleDateString("en-US", {
+              weekday: "short",
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+              hour: "numeric",
+              minute: "numeric",
+            })}
+          </div>
+          <img className="event-image" src={event?.image} alt="" />
+          <div>{` ${attendees} / ${event?.playerAmount} people attending`}</div>
+          <div className="event-date-poolHall">
+            <div>{poolHallName}</div>
+            <div>{poolHallAddress}</div>
+            <div>{poolHallCity}</div>
+            <div>{poolHallState}</div>
+          </div>
+          <div className="event-playerAmount">{event?.playeAmount}</div>
+          <button className="RSVP-button" onClick={handleSubmit}>
+            RSVP
+          </button>
         </div>
-        <div className="event-playerAmount">{event?.playeAmount}</div>
-        <button className="RSVP-button" onClick={handleSubmit}>
-          RSVP
-        </button>
       </div>
     </div>
   );

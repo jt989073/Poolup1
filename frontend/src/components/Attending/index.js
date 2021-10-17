@@ -4,6 +4,7 @@ import { getMyAttendingEvents } from "../../store/event";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { deleteAttendingEvent } from "../../store/event";
+import "./Attending.css"
 
 const AttendingPage = () => {
   const { userId } = useParams();
@@ -24,7 +25,7 @@ const AttendingPage = () => {
   }
 
   return (
-    <main className="event-page">
+    <main className="attending-event-page">
     <div className="event-page-container">
       {events.map(event =>
       <div className="event-container" key={event.id}>

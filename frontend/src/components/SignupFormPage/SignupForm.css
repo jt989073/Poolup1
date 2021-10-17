@@ -1,0 +1,28 @@
+.signup-container{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+   background-color: rgba(0, 0, 0, 0.651);
+   font-size: large;
+   font-weight: 200;
+   width: 400px;
+   height: 600px;
+   padding: 10px;
+  color: rgb(255, 255, 255);
+  justify-content: center;
+}
+
+.total-signup-container{
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-image: url("https://res.cloudinary.com/dqwy6sxtc/image/upload/v1634429380/poolupp/d6317980ba046f2cfbdf18e6ce59225c_pntzvo.jpg");
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.container{
+margin: 10px;
+}

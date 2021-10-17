@@ -13,6 +13,7 @@ const getOneEvent = async (id) => {
  return await Event.findByPk(id, {include: PoolHall})
 }
 
+
 const update = async (details) => {
   const id = details.id;
   delete details.id
