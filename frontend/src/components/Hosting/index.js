@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { getMyHostedEvents } from "../../store/event";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
+import "./Hosting.css"
 
 
 const HostingPage = () => {
   const { userId } = useParams();
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
-
 
 
   // const events = useSelector((state) => state?.event?.hosting?.Events);
@@ -21,7 +21,7 @@ const HostingPage = () => {
 
 
     return (
-      <main className="event-page">
+      <main className="hosting-event-page">
         <div className="event-page-container">
           {events?.map((event) => (
             <div className="event-container" key={event.id}>

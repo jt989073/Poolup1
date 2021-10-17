@@ -26,7 +26,9 @@ const SingleEvent = () => {
   const poolHallState = event?.PoolHall?.state;
   const rsvpArr = useSelector((state) => state?.event?.rsvps);
   const attendees = rsvpArr.length;
-  console.log(">>>>", attendees);
+
+  const ownerId = event?.ownerId;
+  console.log(">>asdfasdfs>>", ownerId);
 
   useEffect(() => {
     dispatch(getOneEvent(eventId));
@@ -39,26 +41,32 @@ const SingleEvent = () => {
       eventId,
       userId,
     };
-    let createdRSVP = await dispatch(createAttendingEvent(payload, eventId));
-    if (createdRSVP) {
-      history.push(`/users/${userId}/attending`);
+    if (attendees < event?.playerAmount){
+      let createdRSVP = await dispatch(createAttendingEvent(payload, eventId));
+      if (createdRSVP) {
+        history.push(`/users/${userId}/attending`);
+      }
+    } else {
+      window.alert("Event is full Bradley!")
     }
+  };
+
+  const handleDelete = (e) => {
+    e.preventDefault();
+    dispatch(deleteEvent(eventId));
+    history.push("/events");
   };
 
   return (
     <div className="single-event-container">
-      <div className="update-delete-container">
-        <UpdateEventModal />
-        <button
-          onClick={() => {
-            dispatch(deleteEvent(eventId));
-            history.push("/events");
-          }}
-          className="delete-button"
-        >
-          Delete Event
-        </button>
-      </div>
+      {ownerId === userId ? (
+        <div className="update-delete-container">
+          <UpdateEventModal />
+          <button onClick={handleDelete} className="delete-button">
+            Delete Event
+          </button>
+        </div>
+      ) : null}
       <div className="event-info-container">
         <div className="event-info">
           <h2 className="event-name">{event?.name}</h2>

@@ -5,7 +5,9 @@ import "./UpdateEventModal.css"
 
 import EditEventForm from "../SingleEvent/EditEvent";
 
-const UpdateEventModal = () => {
+
+
+const UpdateEventModal = ({handleEdit}) => {
   const [showEditEventModal, setShowEditEventModal] = useState(false)
 
 

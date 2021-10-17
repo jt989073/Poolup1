@@ -82,15 +82,6 @@ function EditEventForm({setShowEditEventModal}) {
               required
             />
           </div>
-          {/* <div className="fieldDiv">
-            <label>image</label>
-            <input
-              type="file"
-              // value={date}
-              // onChange={(e) => setDate(e.target.value)}
-              required
-            />
-          </div> */}
           <div className="fieldDiv">
             <label>Player Amount</label>
             <input
