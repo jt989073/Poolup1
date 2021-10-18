@@ -7,5 +7,36 @@
   background-size: cover;
   flex-direction: row;
     /* flex-wrap: wrap; */
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
 
+.attending-event-page::-webkit-scrollbar {
+  width: 1px;
+}
+
+/* Track */
+
+  .attending-event-page::-webkit-scrollbar-track {
+  background: #ffffff00;
+}
+
+/* Handle */
+
+  .attending-event-page::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+.cancel-event{
+  height: 40px;
+  width: 100%;
+  background-color: rgba(141, 141, 141, 0.418);
+  border: 3px solid rgb(168, 168, 168);
+  border-radius: 3px;
+  color: white;
+  margin-right: 38vw;
+}
+
+.cancel-event:hover{
+  background-color: black;
 }

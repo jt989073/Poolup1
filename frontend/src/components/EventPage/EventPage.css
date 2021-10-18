@@ -47,3 +47,20 @@
   margin-left: 4px;
   border-radius: 10px;
 }
+
+.create-event-button{
+  margin-top: 10px;
+  margin-left: 12px;
+  height: 30px;
+  color: white;
+  width: 100px;
+  background-color: rgba(71, 71, 71, 0.438);
+  border: solid 1.7px black;
+  border-radius: 4px;
+  box-shadow: 1px 1px black;
+}
+
+.create-event-button:hover {
+  background-color: black; /* Green */
+  color: white;
+}

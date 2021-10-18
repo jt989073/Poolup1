@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMyAttendingEvents } from "../../store/event";
 import { useParams } from "react-router";
@@ -43,7 +43,7 @@ const AttendingPage = () => {
               minute: "numeric",
             })}
           </p>
-          <button onClick={() => handleDelete(event)}>Cancel RSVP</button>
+          <button className="cancel-event" onClick={() => handleDelete(event)}>Cancel RSVP</button>
       </div>)
       }
     </div>

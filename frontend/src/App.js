@@ -9,6 +9,7 @@ import EventPage from "./components/EventPage";
 import SingleEvent from "./components/SingleEvent";
 import AttendingPage from "./components/Attending";
 import HostingPage from "./components/Hosting";
+import Footer from "./components/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -42,6 +43,7 @@ function App() {
           </Route>
         </Switch>
       )}
+      <Footer />
     </>
   );
 }

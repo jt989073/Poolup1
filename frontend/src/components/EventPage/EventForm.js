@@ -19,15 +19,6 @@ function CreateEventForm({setShowEventModal}) {
   const [valErrors, setValErrors] = useState([])
 
 
-
-  // useEffect(() => {
-  //   const errors = []
-  //   if(name.length < 5) errors.push("Name must be longer than 5 characters")
-  //   if(!date) errors.push("Please provide a date that is in the future")
-  //   if(!poolHall) errors.push("Please provide a pool Hall locatiopn")
-  //   setErrors(errors)
-  // }, [name, date, poolHall, errors])
-
   useEffect(() => {
     dispatch(getPoolHalls())
   }, [dispatch])
