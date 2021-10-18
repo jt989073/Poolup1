@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import { Modal } from "../../context/Modal";
-import { useDispatch, useSelector } from "react-redux";
+// import { useDispatch, useSelector } from "react-redux";
 import "./UpdateEventModal.css"
 
 import EditEventForm from "../SingleEvent/EditEvent";
 
 
 
-const UpdateEventModal = ({handleEdit}) => {
+const UpdateEventModal = () => {
   const [showEditEventModal, setShowEditEventModal] = useState(false)
 
 

@@ -13,12 +13,12 @@ const AttendingPage = () => {
 
   const events = useSelector(state=> state.event.attending)
 
-  console.log(events)
+
 
 
   useEffect(() => {
     dispatch(getMyAttendingEvents(userId));
-  }, [dispatch]);
+  }, [dispatch, userId]);
 
   const handleDelete = (event) => {
     dispatch(deleteAttendingEvent(userId, event.id))

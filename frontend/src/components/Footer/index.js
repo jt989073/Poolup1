@@ -1,7 +1,6 @@
-import { NavLink } from 'react-router-dom';
 import './Footer.css'
 
-function Footer({ isLoaded }) {
+function Footer() {
 
 
   return (

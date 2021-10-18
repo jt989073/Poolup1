@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import {  useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getOneEvent } from "../../store/event";
-import { getPoolHalls } from "../../store/event";
+// import { getPoolHalls } from "../../store/event";
 import { getRSVPS } from "../../store/event";
 import UpdateEventModal from "../UpdateEventModal";
 import { createAttendingEvent } from "../../store/event";
@@ -19,7 +19,7 @@ const SingleEvent = () => {
 
   const events = useSelector((state) => state.event);
   const event = events.list[eventId];
-  const poolHall = event?.PoolHall;
+  // const poolHall = event?.PoolHall;
   const poolHallName = event?.PoolHall?.name;
   const poolHallAddress = event?.PoolHall?.address;
   const poolHallCity = event?.PoolHall?.city;
@@ -29,7 +29,7 @@ const SingleEvent = () => {
 
   const ownerId = event?.ownerId;
 
-console.log("userId>>>>>>>", userId)
+
   useEffect(() => {
     dispatch(getOneEvent(eventId));
     dispatch(getRSVPS(eventId));

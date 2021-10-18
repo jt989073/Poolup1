@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPoolHalls } from "../../store/event";
-import {useHistory} from 'react-router-dom'
-import { createEvent } from "../../store/event";
+// import {useHistory} from 'react-router-dom'
+// import { createEvent } from "../../store/event";
 import { editEvent } from "../../store/event";
 import {useParams} from 'react-router-dom'
 
 
 function EditEventForm({setShowEditEventModal}) {
   const {eventId} = useParams()
-  const history = useHistory()
+  // const history = useHistory()
   const dispatch = useDispatch()
   const ownerId = useSelector(state => state.session.user?.id)
 
@@ -41,7 +41,7 @@ function EditEventForm({setShowEditEventModal}) {
       playerAmount,
     }
     let updatedEvent = await dispatch(editEvent(payload))
-    console.log(updatedEvent)
+
     if (updatedEvent){
     }
     setShowEditEventModal(false)

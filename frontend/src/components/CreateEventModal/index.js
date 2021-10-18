@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import { Modal } from "../../context/Modal";
-import { useDispatch, useSelector } from "react-redux";
+// import { useDispatch, useSelector } from "react-redux";
 import CreateEventForm from "../EventPage/EventForm";
 
 const CreateEventModal = () => {

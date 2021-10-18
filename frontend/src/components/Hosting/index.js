@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMyHostedEvents } from "../../store/event";
 import { useParams } from "react-router";
@@ -9,15 +9,13 @@ import "./Hosting.css"
 const HostingPage = () => {
   const { userId } = useParams();
   const dispatch = useDispatch();
-  const [isLoading, setIsLoading] = useState(false);
 
 
-  // const events = useSelector((state) => state?.event?.hosting?.Events);
   const events = useSelector(state => state?.event?.hosting?.Events)
 
   useEffect(() => {
-    dispatch(getMyHostedEvents(userId)).then(() => setIsLoading(true));
-  }, [dispatch]);
+    dispatch(getMyHostedEvents(userId));
+  }, [dispatch, userId]);
 
 
     return (
